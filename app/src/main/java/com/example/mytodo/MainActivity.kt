@@ -39,7 +39,6 @@ class MainActivity : AppCompatActivity() {
 
             R.id.Search->{
 
-
             }
         }
         return super.onOptionsItemSelected(item)

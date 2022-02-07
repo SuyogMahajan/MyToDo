@@ -9,10 +9,10 @@ import androidx.room.Query
 interface todoDao {
 
     @Insert
-    suspend fun insertTask(todo: TodoModel):Long
+    suspend fun insertTask(todo: TodoModel)
 
     @Query("SELECT * FROM TodoModel WHERE isFinished != -1")
-    suspend fun getTask():LiveData<List<TodoModel>>
+    suspend fun getTask():List<TodoModel>
 
     @Query("UPDATE TodoModel SET isFinished = -1 WHERE id == :id")
     suspend fun finishTask(id:Long)

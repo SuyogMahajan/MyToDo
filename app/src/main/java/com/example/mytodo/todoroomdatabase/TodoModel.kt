@@ -5,6 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class TodoModel(
+
     var name:String,
     var description:String,
     var date:Long,
@@ -14,4 +15,5 @@ data class TodoModel(
 
     @PrimaryKey(autoGenerate = true)
     var id:Long = 0
+
 )

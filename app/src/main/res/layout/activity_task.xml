@@ -35,7 +35,7 @@
             android:id="@+id/NewTaskName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:hint="@string/task_name"
         />
     </com.google.android.material.textfield.TextInputLayout>
@@ -60,7 +60,7 @@
             android:id="@+id/NewTaskDes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:gravity="start"
             android:lines="4"
             android:hint="@string/description"
@@ -81,15 +81,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="15dp"
-        android:clickable="true"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         >
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/NewTaskDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="true"
             android:cursorVisible="false"
-            android:textSize="20sp"
+            android:focusable="false"
+            android:textSize="15sp"
             android:drawableEnd="@drawable/ic_event_symbol"
             android:hint="@string/date"
             />
@@ -97,22 +98,23 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/NewTaskTimeLay"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="15dp"
-        android:visibility="gone"
-        android:clickable="true"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        >
+        android:visibility="gone">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/NewTaskTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="true"
             android:cursorVisible="false"
-            android:textSize="20sp"
-          android:drawableEnd="@drawable/ic_time_symbol"
+            android:focusable="false"
+            android:drawableEnd="@drawable/ic_time_symbol"
             android:hint="@string/time"
-            />
+            android:textSize="15sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView

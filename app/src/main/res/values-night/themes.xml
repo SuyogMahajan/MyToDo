@@ -4,7 +4,7 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/md_purple_200</item>
         <item name="colorPrimaryDark">@color/md_blue_400</item>
-        <item name="colorAccent">@color/md_teal_200</item>
+        <item name="colorAccent">@color/md_green_500</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>

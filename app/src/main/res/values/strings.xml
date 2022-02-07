@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">MyToDo</string>
+    <string name="task_name">Task Name</string>
+    <string name="details">Details</string>
+    <string name="description">Description</string>
+    <string name="date_and_time">Date And Time</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="category">Category</string>
+    <string name="todo">TODO</string>
+    <string name="save">SAVE</string>
 </resources>

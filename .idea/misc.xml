@@ -3,8 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/MyToDo/app/src/main/res/drawable/ic_baseline_access_time_24.xml" value="0.165" />
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/MyToDo/app/src/main/res/drawable/ic_baseline_event_24.xml" value="0.165" />
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/MyToDo/app/src/main/res/drawable/ic_category_symbol.xml" value="0.165" />
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/MyToDo/app/src/main/res/drawable/ic_event_symbol.xml" value="0.165" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/MyToDo/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/MyToDo/app/src/main/res/layout/activity_task.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/MyToDo/app/src/main/res/menu/main_menu.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>

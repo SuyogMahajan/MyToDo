@@ -11,5 +11,8 @@ class TaskActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityTaskBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+
     }
 }

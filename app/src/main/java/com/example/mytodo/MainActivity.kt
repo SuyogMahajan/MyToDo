@@ -6,7 +6,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.mytodo.databinding.ActivityMainBinding
+import com.example.mytodo.todoroomdatabase.TodoModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding:ActivityMainBinding
@@ -17,6 +20,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
+        binding.rv.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
+
+        var adptr = TodoAdapter(listOf(TodoModel("Codechef","hello",21112001,255,"Codechef",-1)),this)
+        binding.rv.adapter = adptr
 
         val i = Intent(this,TaskActivity::class.java)
 

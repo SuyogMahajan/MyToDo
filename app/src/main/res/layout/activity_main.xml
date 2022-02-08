@@ -10,15 +10,17 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="MyToDo"
         android:background="@color/md_blue_400"
-        />
+        app:title="MyToDo" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv"
-        android:layout_below="@id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="10dp"
+        tools:listitem="@layout/todo_item">
 
     </androidx.recyclerview.widget.RecyclerView>
 

@@ -60,7 +60,7 @@ class TaskActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun setTimeListener() {
         calendar = Calendar.getInstance()
-        timeListener = TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
+        timeListener = TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
             calendar.set(Calendar.HOUR_OF_DAY,hourOfDay)
             calendar.set(Calendar.MINUTE,minute)
             updateTimeDate()
@@ -79,7 +79,7 @@ class TaskActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun setListener() {
         calendar = Calendar.getInstance()
-        calendarListener = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+        calendarListener = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
 
             calendar.set(Calendar.YEAR,year)
             calendar.set(Calendar.MONTH,month)

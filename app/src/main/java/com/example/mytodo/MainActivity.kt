@@ -21,8 +21,9 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
         binding.rv.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
+        val reso = resources
 
-        var adptr = TodoAdapter(listOf(TodoModel("Codechef","hello",21112001,255,"Codechef",-1)),this)
+        var adptr = TodoAdapter(listOf(TodoModel("Codechef","hello",21112001,255,"Codechef",-1)),this,reso)
         binding.rv.adapter = adptr
 
         val i = Intent(this,TaskActivity::class.java)

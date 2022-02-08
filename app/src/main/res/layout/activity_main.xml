@@ -36,7 +36,6 @@
         android:backgroundTint="@color/md_red_600"
         android:clickable="true"
         android:foreground="@drawable/ic_add_symbol"
-        android:foregroundTint="@color/md_white_1000"
-        />
+        android:foregroundTint="@color/md_white_1000" />
 
 </RelativeLayout>

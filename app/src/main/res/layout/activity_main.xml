@@ -17,15 +17,16 @@
         android:id="@+id/rv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        tools:listitem="@layout/todo_item"
         android:layout_below="@id/toolbar"
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="10dp"
-        tools:listitem="@layout/todo_item">
+        >
 
     </androidx.recyclerview.widget.RecyclerView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/floatingaction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 

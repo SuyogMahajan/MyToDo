@@ -3,21 +3,26 @@ package com.example.mytodo.todoroomdatabase
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface todoDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertTask(todo: TodoModel)
 
     @Query("SELECT * FROM TodoModel WHERE isFinished != -1")
-    suspend fun getTask():List<TodoModel>
+    fun getTask(): Flow<List<TodoModel>>
 
     @Query("UPDATE TodoModel SET isFinished = -1 WHERE id == :id")
-    suspend fun finishTask(id:Long)
+    fun finishTask(id:Long)
 
     @Query("DELETE FROM TodoModel WHERE id == :id")
-    suspend fun deleteTask(id:Long)
+    fun deleteTask(id:Long)
+
+    @Query("DELETE FROM TodoModel")
+     fun deleteAll()
 
 }

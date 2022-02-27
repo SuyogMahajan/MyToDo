@@ -13,6 +13,7 @@
 
     <View
         android:id="@+id/viewCardColour"
+        android:background="@color/md_green_500"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />

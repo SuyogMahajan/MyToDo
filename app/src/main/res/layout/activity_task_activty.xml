@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".TaskActivity">
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/NewTakToolbar"
@@ -37,7 +36,7 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:hint="@string/task_name"
-        />
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -70,12 +69,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/date_and_time"
-        android:textSize="17sp"
         android:layout_marginHorizontal="15dp"
         android:layout_marginTop="10dp"
+        android:text="@string/date_and_time"
         android:textColor="?attr/colorAccent"
-        />
+        android:textSize="17sp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -103,7 +101,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="15dp"
-        android:visibility="gone">
+        android:visibility="gone"
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/NewTaskTime"
@@ -140,11 +139,11 @@
 
         <Spinner
 
-        android:id="@+id/NewTaskSpinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+            android:id="@+id/NewTaskSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-        />
+            />
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton

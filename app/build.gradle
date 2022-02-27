@@ -8,13 +8,13 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.example.mytodo"
-        minSdk 26
+        applicationId "com.example.myapplication"
+        minSdk 29
         targetSdk 31
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -39,29 +39,22 @@ android {
 
 dependencies {
 
-    implementation "androidx.appcompat:appcompat:1.4.1"
-    implementation "androidx.activity:activity-ktx:1.4.0"
-
-    // Dependencies for working with Architecture components
-    // You'll probably have to update the version numbers in build.gradle (Project)
+    //noinspection GradleCompatible
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
-    // Room components
-    implementation "androidx.room:room-ktx:2.4.2"
-    kapt "androidx.room:room-compiler:2.4.2"
-    androidTestImplementation "androidx.room:room-testing:2.4.2"
+    implementation 'com.google.android.material:material:1.5.0'
+    testImplementation 'junit:junit:4.13.2'
+    implementation 'androidx.room:room-common:2.4.1'
+    implementation 'androidx.room:room-ktx:2.4.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    // Lifecycle components
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.1"
     implementation "androidx.lifecycle:lifecycle-common-java8:2.4.1"
-    implementation "com.google.android.material:material:1.5.0"
 
 
-    // Kotlin components
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0"
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0", {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    }
-
-    androidTestImplementation "androidx.test.ext:junit:1.1.3"
+    implementation "androidx.room:room-runtime:2.4.1"
+    kapt ("androidx.room:room-compiler:2.4.1")
 }

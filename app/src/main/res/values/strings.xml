@@ -9,4 +9,6 @@
     <string name="category">Category</string>
     <string name="todo">TODO</string>
     <string name="save">SAVE</string>
+    <string name="search">Search</string>
+    <string name="history">History</string>
 </resources>

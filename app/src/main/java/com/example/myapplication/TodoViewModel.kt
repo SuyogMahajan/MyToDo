@@ -22,8 +22,12 @@ class TodoViewModel(application: Application):AndroidViewModel(application) {
        repository.insert(todo)
     }
 
-    fun delete(todo: Todo) = viewModelScope.launch(Dispatchers.IO){
-        repository.delete(todo)
+    fun finishTask(id:Long)= viewModelScope.launch(Dispatchers.IO){
+       repository.finishTask(id)
+    }
+
+    fun delete(id:Long) = viewModelScope.launch(Dispatchers.IO){
+        repository.delete(id)
     }
 
 }

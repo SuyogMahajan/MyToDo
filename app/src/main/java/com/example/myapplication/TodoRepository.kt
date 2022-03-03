@@ -9,7 +9,11 @@ class TodoRepository(private var todoDao: TodoDao) {
         todoDao.insert(todo)
     }
 
-    suspend fun delete(todo: Todo){
-        todoDao.delete(todo)
+    suspend fun finishTask(id:Long){
+        todoDao.finishTask(id)
+    }
+
+    suspend fun delete(id:Long){
+        todoDao.delete(id)
     }
 }

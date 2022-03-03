@@ -26,11 +26,10 @@ class TodoRecyclerViewAdapter(var context: Context,var resources:Resources):Recy
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        holder.binding.name.text = list[position].name.toString()
-        holder.binding.subtittle.text = list[position].disc.toString()
-        holder.binding.timeVar.text = convertTime(list[position].time).toString()
-        holder.binding.dateVar.text = convertDate(list[position].date).toString()
-        holder.binding.category.text = list[position].category.toString()
+        holder.binding.name.text = list[position].name
+        holder.binding.timeVar.text = convertTime(list[position].time)
+        holder.binding.dateVar.text = convertDate(list[position].date)
+        holder.binding.category.text = list[position].category
 
         val colours = resources.getIntArray(R.array.random_colours)
         holder.binding.viewCardColour.setBackgroundColor(colours[Random.nextInt(colours.size)])
@@ -40,7 +39,11 @@ class TodoRecyclerViewAdapter(var context: Context,var resources:Resources):Recy
     @SuppressLint("NotifyDataSetChanged")
     fun updateList(newList:List<Todo>){
         list.clear()
-        list.addAll(newList)
+
+        if(newList.isNotEmpty()) {
+            list.addAll(newList)
+        }
+
         notifyDataSetChanged()
     }
 
@@ -50,6 +53,10 @@ class TodoRecyclerViewAdapter(var context: Context,var resources:Resources):Recy
         var sdf = SimpleDateFormat("EEE,d MMM yyyy")
         return sdf.format(Date(date)).toString()
 
+    }
+
+    override fun getItemId(position: Int): Long {
+        return list[position].id
     }
 
     @SuppressLint("SimpleDateFormat")

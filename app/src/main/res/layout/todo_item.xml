@@ -13,10 +13,9 @@
 
     <View
         android:id="@+id/viewCardColour"
-        android:background="@color/md_green_500"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        android:background="@color/md_green_500" />
 
     <RelativeLayout
 
@@ -37,12 +36,16 @@
             android:padding="7dp"
             tools:ignore="MissingConstraints">
 
+
             <TextView
                 android:id="@+id/name"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="43dp"
                 android:text="Task Name"
                 android:textColor="@color/md_black_1000"
                 android:textSize="25sp"
@@ -50,25 +53,17 @@
 
             <TextView
                 android:id="@+id/category"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+
                 android:layout_marginRight="10dp"
                 android:text="@string/category"
                 android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/subtittle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/name"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="17dp"
-                android:text="SubTittle"
-                android:textSize="20sp"
-                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/dateConst"

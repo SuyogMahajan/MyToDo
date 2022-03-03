@@ -5,9 +5,11 @@ import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -20,7 +22,7 @@ import com.example.myapplication.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private lateinit var binding:ActivityMainBinding
     lateinit var viewModel: TodoViewModel
-
+    lateinit var recyclerViewAdapter:TodoRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -29,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
 
-        val recyclerViewAdapter = TodoRecyclerViewAdapter(this,resources)
+        recyclerViewAdapter = TodoRecyclerViewAdapter(this,resources)
         binding.rv.layoutManager = LinearLayoutManager(this)
         binding.rv.adapter = recyclerViewAdapter
 
@@ -116,17 +118,20 @@ class MainActivity : AppCompatActivity() {
                        icon = drawableToBitmap(d!!)
                        paint.color = Color.parseColor("#D32F2F")
 
+                       // this draws diffrent shapes behind our view
                        c.drawRect(
                            itemView.right.toFloat(), itemView.top.toFloat(),
                            itemView.right.toFloat() + dX, itemView.bottom.toFloat(), paint
                        )
 
+                       // this sets an bitmap in our shape
                        c.drawBitmap(
                            icon,
                            itemView.right.toFloat() - icon.width.toFloat()-40,
                            itemView.top.toFloat() + (itemView.bottom.toFloat() - itemView.top.toFloat() - icon.height.toFloat()) / 2,
                            paint
                        )
+
                    }
                    viewHolder.itemView.translationX = dX
 
@@ -152,19 +157,62 @@ class MainActivity : AppCompatActivity() {
 
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
+
         menuInflater.inflate(R.menu.main_menu,menu)
 
+        val item = menu.findItem(R.id.Search)
+        val searchView = item.actionView as SearchView
+
+        item.setOnActionExpandListener(object : MenuItem.OnActionExpandListener{
+            override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
+                displayTodos()
+                return true
+            }
+
+            override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
+               displayTodos()
+                return true
+            }
+        })
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+
+                if(!newText.isNullOrEmpty()){
+                    displayTodos(newText)
+                }else{
+                    viewModel.allTodos.observe(this@MainActivity, Observer {
+                        recyclerViewAdapter.updateList(it)
+                    }
+                    )
+                }
+                return true
+            }
+
+        })
+
         return super.onCreateOptionsMenu(menu)
+    }
+
+   fun displayTodos(newText: String = "") {
+        Log.d("search","display Called")
+
+      viewModel.allTodos.observe(this, Observer {
+          if(it.isNotEmpty()){
+                    recyclerViewAdapter.updateList(it.filter {  todo ->
+                        todo.name.contains(newText,true) })
+              }
+      })
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.HistoryBtn->{
                 startActivity(Intent(this,HistoryActivity::class.java))
-            }
-
-            R.id.Search->{
-
             }
         }
         return super.onOptionsItemSelected(item)

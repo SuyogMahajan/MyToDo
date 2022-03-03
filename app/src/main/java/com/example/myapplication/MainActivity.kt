@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.databinding.ActivityMainBinding
 
-
 class MainActivity : AppCompatActivity() {
     private lateinit var binding:ActivityMainBinding
     lateinit var viewModel: TodoViewModel
@@ -75,9 +74,9 @@ class MainActivity : AppCompatActivity() {
                 val position = viewHolder.absoluteAdapterPosition
 
                 if(direction == ItemTouchHelper.LEFT ){
-                     viewModel.finishTask(binding.rv.adapter!!.getItemId(position))
+                    viewModel.delete(binding.rv.adapter!!.getItemId(position))
                 }else if(direction == ItemTouchHelper.RIGHT){
-                     viewModel.delete(binding.rv.adapter!!.getItemId(position))
+                    viewModel.finishTask(binding.rv.adapter!!.getItemId(position))
                 }
 
             }

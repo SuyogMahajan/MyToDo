@@ -23,7 +23,7 @@ class TaskActivity : AppCompatActivity(),View.OnClickListener {
 
 
     lateinit var viewModel: TodoViewModel
-    var categorylist = arrayOf( "Codechef","Personal","Business","Educational","Workout")
+    var categorylist = arrayOf( "Personal","Codechef","Business","Educational","Workout")
 
     var date:Long = 0L
     var time:Long = 0L
@@ -44,7 +44,7 @@ class TaskActivity : AppCompatActivity(),View.OnClickListener {
     }
 
     private fun setSpinnerOptions() {
-        var categoryAdapter = ArrayAdapter<String>(this,
+        var categoryAdapter = ArrayAdapter(this,
             R.layout.simple_spinner_dropdown_item,categorylist)
         binding.NewTaskSpinner.adapter = categoryAdapter
     }
@@ -53,8 +53,8 @@ class TaskActivity : AppCompatActivity(),View.OnClickListener {
         if(v != null){
             when(v.id){
                 binding.NewTaskBtnSave.id->{
-                   if(binding.NewTaskName.text.isNullOrEmpty()){
-                       Toast.makeText(this,"Please Enter Name",Toast.LENGTH_LONG).show()
+                   if(binding.NewTaskName.text.isNullOrEmpty() || date == 0L || time == 0L){
+                       Toast.makeText(this,"You Must Enter Name ,Date & Time !",Toast.LENGTH_LONG).show()
                    }else{
                        viewModel.insert(Todo(binding.NewTaskName.text.toString(),binding.NewTaskDes.text.toString(),binding.NewTaskSpinner.selectedItem.toString(),time,date))
                        this.finish()

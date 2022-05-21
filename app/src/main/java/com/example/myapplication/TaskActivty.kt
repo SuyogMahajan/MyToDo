@@ -1,9 +1,11 @@
 package com.example.myapplication
 
 import android.R
-import android.app.DatePickerDialog
-import android.app.TimePickerDialog
+import android.app.*
+import android.content.BroadcastReceiver
 import android.content.Intent
+import android.content.IntentFilter
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
@@ -20,26 +22,43 @@ class TaskActivity : AppCompatActivity(),View.OnClickListener {
     private lateinit var calendar: Calendar
     private lateinit var calendarListener: DatePickerDialog.OnDateSetListener
     private lateinit var timeListener: TimePickerDialog.OnTimeSetListener
-
-
+    private lateinit var alarmManager:AlarmManager
     lateinit var viewModel: TodoViewModel
+
+    lateinit var pendingIntent: PendingIntent
+
     var categorylist = arrayOf( "Personal","Codechef","Business","Educational","Workout")
 
     var date:Long = 0L
     var time:Long = 0L
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTaskActivtyBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
+
+        createNotificationChannel()
 
         viewModel = ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory(application)).get(TodoViewModel::class.java)
         binding.NewTaskDate.setOnClickListener(this)
         binding.NewTaskTime.setOnClickListener(this)
         binding.NewTaskBtnSave.setOnClickListener(this)
+
         setSpinnerOptions()
+
+    }
+
+    private fun createNotificationChannel() {
+
+        val name = "channel name"
+        val description = "channel descri"
+        val importance = NotificationManager.IMPORTANCE_HIGH
+        val channel = NotificationChannel("MyToDo",name,importance)
+        channel.description = description
+
+        val notificationManager = getSystemService(NotificationManager::class.java)
+        notificationManager.createNotificationChannel(channel)
 
     }
 
@@ -57,7 +76,7 @@ class TaskActivity : AppCompatActivity(),View.OnClickListener {
                        Toast.makeText(this,"You Must Enter Name ,Date & Time !",Toast.LENGTH_LONG).show()
                    }else{
                        viewModel.insert(Todo(binding.NewTaskName.text.toString(),binding.NewTaskDes.text.toString(),binding.NewTaskSpinner.selectedItem.toString(),time,date))
-                       this.finish()
+                       finish()
                    }
                 }
 
@@ -71,6 +90,8 @@ class TaskActivity : AppCompatActivity(),View.OnClickListener {
             }
         }
     }
+
+
 
     private fun setDatePicker() {
         calendar = Calendar.getInstance()

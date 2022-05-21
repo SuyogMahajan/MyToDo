@@ -66,6 +66,4 @@ class TodoRecyclerViewAdapter(var context: Context,var resources:Resources):Recy
         return sdf.format(Date(time)).toString()
 
     }
-
-
 }

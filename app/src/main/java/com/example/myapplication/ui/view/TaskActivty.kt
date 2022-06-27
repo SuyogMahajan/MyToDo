@@ -1,18 +1,15 @@
 package com.example.myapplication
 
-import android.R
 import android.app.*
-import android.content.BroadcastReceiver
-import android.content.Intent
-import android.content.IntentFilter
-import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.example.myapplication.data.models.Todo
 import com.example.myapplication.databinding.ActivityTaskActivtyBinding
+import com.example.myapplication.ui.view.viewModel.TodoViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -27,7 +24,7 @@ class TaskActivity : AppCompatActivity(),View.OnClickListener {
 
     lateinit var pendingIntent: PendingIntent
 
-    var categorylist = arrayOf( "Personal","Codechef","Business","Educational","Workout")
+    var categorylist = arrayOf( "Personal","Business","Educational")
 
     var date:Long = 0L
     var time:Long = 0L
@@ -40,7 +37,8 @@ class TaskActivity : AppCompatActivity(),View.OnClickListener {
 
         createNotificationChannel()
 
-        viewModel = ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory(application)).get(TodoViewModel::class.java)
+        viewModel = ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory(application)).get(
+            TodoViewModel::class.java)
         binding.NewTaskDate.setOnClickListener(this)
         binding.NewTaskTime.setOnClickListener(this)
         binding.NewTaskBtnSave.setOnClickListener(this)
@@ -64,7 +62,7 @@ class TaskActivity : AppCompatActivity(),View.OnClickListener {
 
     private fun setSpinnerOptions() {
         var categoryAdapter = ArrayAdapter(this,
-            R.layout.simple_spinner_dropdown_item,categorylist)
+            androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,categorylist)
         binding.NewTaskSpinner.adapter = categoryAdapter
     }
 

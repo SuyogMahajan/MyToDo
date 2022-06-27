@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.ui.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,6 +6,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.databinding.ActivityHistoryBinding
+import com.example.myapplication.ui.adapter.TodoRecyclerViewAdapter
+import com.example.myapplication.ui.view.viewModel.TodoViewModel
 
 class HistoryActivity : AppCompatActivity() {
     private lateinit var binding:ActivityHistoryBinding
@@ -21,7 +23,8 @@ class HistoryActivity : AppCompatActivity() {
         binding.rv.layoutManager = LinearLayoutManager(this)
         binding.rv.adapter = recyclerViewAdapter
 
-        viewModel = ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory(application)).get(TodoViewModel::class.java)
+        viewModel = ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory(application)).get(
+            TodoViewModel::class.java)
 
         viewModel.hist.observe(this, Observer {
             recyclerViewAdapter.updateList(it)

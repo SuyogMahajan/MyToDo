@@ -1,9 +1,12 @@
-package com.example.myapplication
+package com.example.myapplication.ui.view.viewModel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.example.myapplication.databases.TodoDataBase
+import com.example.myapplication.data.models.Todo
+import com.example.myapplication.data.repos.TodoRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -11,7 +14,7 @@ class TodoViewModel(application: Application):AndroidViewModel(application) {
 
     val allTodos:LiveData<List<Todo>>
     val hist:LiveData<List<Todo>>
-    val repository:TodoRepository
+    val repository: TodoRepository
 
     init {
         val dao = TodoDataBase.getDataBase(application).getTodoDao()

@@ -1,17 +1,16 @@
-package com.example.myapplication
+package com.example.myapplication.ui.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Resources
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.R
+import com.example.myapplication.data.models.Todo
 import com.example.myapplication.databinding.TodoItemBinding
-import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 import kotlin.random.Random
 
 class TodoRecyclerViewAdapter(var context: Context,var resources:Resources):RecyclerView.Adapter<TodoRecyclerViewAdapter.ViewHolder>() {

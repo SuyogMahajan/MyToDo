@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.ui.view
 
 import android.content.Intent
 import android.graphics.*
@@ -16,12 +16,16 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.R
+import com.example.myapplication.TaskActivity
 import com.example.myapplication.databinding.ActivityMainBinding
+import com.example.myapplication.ui.adapter.TodoRecyclerViewAdapter
+import com.example.myapplication.ui.view.viewModel.TodoViewModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding:ActivityMainBinding
     lateinit var viewModel: TodoViewModel
-    lateinit var recyclerViewAdapter:TodoRecyclerViewAdapter
+    lateinit var recyclerViewAdapter: TodoRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -34,7 +38,8 @@ class MainActivity : AppCompatActivity() {
         binding.rv.layoutManager = LinearLayoutManager(this)
         binding.rv.adapter = recyclerViewAdapter
 
-        viewModel = ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory(application)).get(TodoViewModel::class.java)
+        viewModel = ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory(application)).get(
+            TodoViewModel::class.java)
 
         viewModel.allTodos.observe(this, Observer {list->
             list?.let {
@@ -45,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         intitSwipe()
 
         binding.FloatingAction.setOnClickListener{
-            val intent = Intent(this@MainActivity,TaskActivity::class.java)
+            val intent = Intent(this@MainActivity, TaskActivity::class.java)
             startActivity(intent)
         }
 
@@ -98,7 +103,7 @@ class MainActivity : AppCompatActivity() {
                    var icon:Bitmap?
 
                    if(dX > 0){
-                       val d = ResourcesCompat.getDrawable(resources,R.drawable.ic_done,theme)
+                       val d = ResourcesCompat.getDrawable(resources, R.drawable.ic_done,theme)
                        icon = drawableToBitmap(d!!)
 
                        paint.color = Color.parseColor("#388E3C")
@@ -113,7 +118,7 @@ class MainActivity : AppCompatActivity() {
                            )
 
                    }else{
-                       val d = ResourcesCompat.getDrawable(resources,R.drawable.ic_delete,theme)
+                       val d = ResourcesCompat.getDrawable(resources, R.drawable.ic_delete,theme)
                        icon = drawableToBitmap(d!!)
                        paint.color = Color.parseColor("#D32F2F")
 
@@ -181,7 +186,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
 
-                if(!newText.isNullOrEmpty()){
+                if(newText != null){
                     displayTodos(newText)
                 }else{
                     viewModel.allTodos.observe(this@MainActivity, Observer {
@@ -201,32 +206,32 @@ class MainActivity : AppCompatActivity() {
         Log.d("search","display Called")
 
       viewModel.allTodos.observe(this, Observer {
-          if(it.isNotEmpty()){
-                    recyclerViewAdapter.updateList(it.filter {  todo ->
-                        todo.name.contains(newText,true) })
+          if(!it.isEmpty()){
+                    recyclerViewAdapter.updateList(it)
               }
       })
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            R.id.HistoryBtn->{
-                startActivity(Intent(this,HistoryActivity::class.java))
+            R.id.HistoryBtn ->{
+                startActivity(Intent(this, HistoryActivity::class.java))
             }
         }
         return super.onOptionsItemSelected(item)
     }
 
     private fun drawableToBitmap(drawable: Drawable):Bitmap {
+
         if (drawable is BitmapDrawable) {
             return drawable.bitmap
         }
-        val bitmap =
-            Bitmap.createBitmap(200, 200, Bitmap.Config.ARGB_8888)
+
+        val bitmap = Bitmap.createBitmap(200, 200, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bitmap)
         drawable.setBounds(10, 10, canvas.width, canvas.height)
         drawable.draw(canvas)
         return bitmap
+
     }
 }
-
